@@ -1,0 +1,46 @@
+# Add rules here to build your software
+# See https://docs.bazel.build/versions/master/build-ref.html#BUILD_files
+# https://bazelbuild.github.io/rules_nodejs/
+# This shows us that rules_nodejs has told Bazel that a workspace named @npm is available (think of the at-sign like a scoped package for Bazel). rules_nodejs will add index.bzl files exposing all the binaries the package manager installed (the same as the content of the node_modules/.bin folder). The three tools we installed are in this @npm scope and each has an index file with a .bzl extension.
+load("@npm//truffle:index.bzl", "truffle")
+
+filegroup(
+    name = "truffle_config",
+    srcs = [
+        "truffle-config.js"
+    ],
+)
+
+filegroup(
+    name = "assets",
+    srcs = glob(["contracts/*", "test/*", "migrations/*"]),
+)
+
+truffle(
+    name = "help",
+    args = [
+        "help"
+    ],
+)
+
+truffle(
+    name = "build",
+    args = [
+        "build",
+    ],
+    data = [
+        ":truffle_config",
+        ":assets",
+    ]
+)
+
+truffle(
+    name = "test",
+    args = [
+        "test",
+    ],
+    data = [
+        ":truffle_config",
+        ":assets",
+    ]
+)
