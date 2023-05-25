@@ -7,7 +7,7 @@ main() {
     hash node
     hash npm
     echo "Node and NPM ok."
-    
+
     echo "Checking bazel..."
     hash bazel
     echo "bazel ok"

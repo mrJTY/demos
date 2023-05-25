@@ -21,7 +21,7 @@ contract("UniAdmissionToken", accounts => {
   const eventCourseCreated = "CourseCreated";
   const eventCourseModified = "CourseModified";
   const feesPerUoc = (10**3);
- 
+
   describe("The COO role", () =>{
     let uat = null;
     before(async() => {
@@ -57,7 +57,7 @@ contract("UniAdmissionToken", accounts => {
     });
 
   })
-  
+
   describe("A UniAdmin role", () =>{
     let uat = null;
     beforeEach(async() => {
@@ -99,7 +99,7 @@ contract("UniAdmissionToken", accounts => {
         "Course should have been created"
       );
     });
-    
+
     it("should be able to modify a course", async() => {
       const biddingDeadline = 1617533560;
       const quota = 2;
@@ -149,7 +149,7 @@ contract("UniAdmissionToken", accounts => {
         eventStudentPaidFees,
         "Student should have been able to pay fees"
       );
-    
+
       // 3 UOC bought == 300 admission tokens
       const expectedAdmissionTokens = (feesInWei / feesPerUoc) * 100;
       const studentCreatedAttr = await uat.getStudent(student01);
@@ -159,7 +159,7 @@ contract("UniAdmissionToken", accounts => {
         expectedAdmissionTokens,
         "student should have gotten 300 admission token"
       );
-      
+
       // Check the balance. WHY DOUBLE??
       const contractBalance = Number(await web3.eth.getBalance(contractAddress));
       assert.equal(
@@ -167,7 +167,7 @@ contract("UniAdmissionToken", accounts => {
         feesInWei,
         "Balance must be the same as student paid"
       );
-    
+
     });
 
     it("should not be able to admit another student", async() => {
@@ -178,7 +178,7 @@ contract("UniAdmissionToken", accounts => {
         assert(e.message.includes("Not UniAdmin"));
       }
     });
-    
+
     it("should throw an error if student is not found", async() => {
       try {
         const studentCreatedAttr = await uat.getStudent(outsider);

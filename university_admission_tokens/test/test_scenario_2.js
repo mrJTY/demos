@@ -95,19 +95,19 @@ contract("UniAdmissionToken", accounts => {
         const studentData01 = await uat.getStudent(student01);
         const balance01 = studentData01[1];
         assert.equal(Number(balance01), 600);
-        
+
         const studentData02 = await uat.getStudent(student02);
         const balance02 = studentData02[1];
         assert.equal(Number(balance02), 1000);
-        
+
         const studentData03 = await uat.getStudent(student03);
         const balance03 = studentData03[1];
         assert.equal(Number(balance03), 0);
-        
+
         const studentData04 = await uat.getStudent(student04);
         const balance04 = studentData04[1];
         assert.equal(Number(balance04), 900);
-        
+
         const studentData05 = await uat.getStudent(student05);
         const balance05 = studentData05[1];
         assert.equal(Number(balance05), 1800);

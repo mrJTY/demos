@@ -62,7 +62,7 @@ contract("UniAdmissionToken", accounts => {
       await uat.bidAdmissionTokens("COMP6451", {from: student01, value: 1600});
       await uat.bidAdmissionTokens("COMP6451", {from: student03, value: 1800});
       await uat.bidAdmissionTokens("COMP6451", {from: student05, value: 1600});
-      
+
       await uat.bidAdmissionTokens("COMP3441", {from: student01, value: 200});
       await uat.bidAdmissionTokens("COMP3441", {from: student02, value: 100});
       await uat.bidAdmissionTokens("COMP3441", {from: student04, value: 200});
@@ -79,11 +79,11 @@ contract("UniAdmissionToken", accounts => {
       const contractBalance = await uat.balanceOf();
       assert.equal(Number(contractBalance), 90200, "Contract balance was expected to be 90200");
     });
-    
+
     it("should be able to modify bid", async () => {
       await uat.modifyBid("COMP6451", 1800, {from: student01});
     });
-    
+
     it("should be able close enrollments", async () => {
       await uat.closeEnrollment("COMP6451", {from: uniAdmin01});
       await uat.closeEnrollment("COMP3441", {from: uniAdmin01});
@@ -93,22 +93,22 @@ contract("UniAdmissionToken", accounts => {
       const studentData01 = await uat.getStudent(student01);
       const balance01 = studentData01[1];
       assert.equal(Number(balance01), 0);
-      
+
       const studentData02 = await uat.getStudent(student02);
       const balance02 = studentData02[1];
       assert.equal(Number(balance02), 1800);
-      
+
       const studentData03 = await uat.getStudent(student03);
       const balance03 = studentData03[1];
       assert.equal(Number(balance03), 0);
-     
+
       // This fails on the last test, results in 1380 instead of 1400
       // I'm not sure who should pay for the 10% fees in wei
       // With my implementation, it is the payer who bears this cost.
       // const studentData04 = await uat.getStudent(student04);
       // const balance04 = studentData04[1];
       // assert.equal(Number(balance04), 1400);
-      
+
       const studentData05 = await uat.getStudent(student05);
       const balance05 = studentData05[1];
       assert.equal(Number(balance05), 1800);

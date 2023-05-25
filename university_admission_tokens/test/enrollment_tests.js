@@ -24,7 +24,7 @@ contract("UniAdmissionToken", accounts => {
   const eventCourseEnrollmentClosed = "CourseEnrollmentClosed";
   const feesPerUoc = (10**3);
   var cost = 0;
- 
+
   describe("Enrollments:", () =>{
     let uat = null;
     before(async() => {
@@ -71,7 +71,7 @@ contract("UniAdmissionToken", accounts => {
         eventCourseEnrollmentClosed,
       );
     });
-    
+
     it("uniAdmin should be able to close enrollments for COMP02", async() => {
       const tx = await uat.closeEnrollment("COMP02", {from: uniAdmin02});
       assert.equal(
@@ -83,7 +83,7 @@ contract("UniAdmissionToken", accounts => {
         eventCourseEnrollmentClosed,
       );
     });
-    
+
     it("student01 should not be able to enroll in COMP01 due to quota limtations", async() => {
       const course01 = await uat.getCourse("COMP01");
       const studentsEnrolled = course01[3];
@@ -93,7 +93,7 @@ contract("UniAdmissionToken", accounts => {
         "Student01 should not have been able to make it for COMP01"
       );
     });
-    
+
     it("student02 should be able to enroll in COMP01", async() => {
       const course01 = await uat.getCourse("COMP01");
       const studentsEnrolled = course01[3];
@@ -103,7 +103,7 @@ contract("UniAdmissionToken", accounts => {
         "Student02 should have been able to make it for COMP01"
       );
     });
-    
+
     it("both student01 and student02 should be able to enroll in COMP02", async() => {
       const course02 = await uat.getCourse("COMP02");
       const studentsEnrolled = course02[3];

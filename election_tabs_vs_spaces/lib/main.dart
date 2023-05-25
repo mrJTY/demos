@@ -20,7 +20,7 @@ class MyAppState extends State<MyApp> {
     //   Text("Votes counts for A"),
     //   Text("Votes counts for B"),
     // ]);
-    
+
     // var voteButtons = Row(children: [
     //   ElevatedButton(child: Text("Vote for A"), onPressed: null),
     //   ElevatedButton(child: Text("Vote for B"), onPressed: null),

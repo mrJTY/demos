@@ -14,10 +14,10 @@ contract Voting {
     function getTotalVotes(string memory candidate) view public returns(uint256) {
         return votes[candidate];
     }
-    
+
     function vote(string memory candidate) payable public {
         emit Vote(msg.sender, candidate);
         votes[candidate] = votes[candidate] + 1;
     }
-    
+
 }

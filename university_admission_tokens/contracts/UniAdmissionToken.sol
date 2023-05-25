@@ -51,7 +51,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
     string courseCode;
     uint256 bidAmount;
     uint256 bidTime;
-  } 
+  }
   mapping(string => Bid[]) bids;
 
   constructor() ERC20("UniAdmissionToken", "UAT") public {
@@ -91,7 +91,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
 
   /**
    * Get a course and return as tuple
-   */ 
+   */
   function getCourse(string memory courseCode) view external returns(string memory, uint, uint, address[] memory, address, string[] memory) {
     Course storage c = courses[courseCode];
     return(c.courseCode, c.quota, c.biddingDeadline, c.studentsEnrolled, c.lecturerAddress, c.prerequisites);
@@ -107,7 +107,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
     }
     return false;
   }
-  
+
   function getFeesPerUoc() view external returns(uint) {
     return feesPerUoc;
   }
@@ -126,7 +126,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
   }
 
 
-  /** 
+  /**
    * Only the COO can withdraw funds out of the contract
    * Reference: https://youtu.be/_Nvl-gz-tRs
    */
@@ -136,7 +136,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
     balance -= amountInWei;
     receiver.transfer(amountInWei);
   }
-  
+
 
   /**
    * Grants the uniAdminRole to an address.
@@ -156,7 +156,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
 
   /**
    * Admit a student to the uni.
-   * Only a UniAdmin can do this. 
+   * Only a UniAdmin can do this.
    */
   function admitStudentToUni(address studentAddress) external {
     require(hasRole(UNI_ADMIN_ROLE, msg.sender), "Not UniAdmin");
@@ -272,8 +272,8 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
     require(students[msg.sender].admissionTokens >= msg.value, "Not enough tokens");
 
 
-    /** 
-    // Student can only bid if it meets course preqs or lecturer approves 
+    /**
+    // Student can only bid if it meets course preqs or lecturer approves
     // if this course has prerequisites
     // Commented out because contract size is too big!
     // Pseudocode:
@@ -294,12 +294,12 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
     bids[courseCode].push(Bid(msg.sender, courseCode, msg.value, bidTime));
     emit BidCreated(msg.sender, courseCode, msg.value, bidTime);
   }
-  
+
 
   /**
-   * Allows a student to modify an existing bid 
-   */ 
-  function modifyBid(string memory courseCode, uint256 newBid) external returns(bool) { 
+   * Allows a student to modify an existing bid
+   */
+  function modifyBid(string memory courseCode, uint256 newBid) external returns(bool) {
     require(hasRole(STUDENT_ROLE, msg.sender), "Not Student");
     require(_courseExists(courseCode), "Not exist");
 
@@ -391,7 +391,7 @@ contract UniAdmissionToken is ERC20, Ownable, AccessControl {
         }
       }
 
-      // Enroll student to the course 
+      // Enroll student to the course
       courses[courseCode].studentsEnrolled.push(topBidder);
       // Remove the bid
       delete bids[courseCode][topBidderIndex];

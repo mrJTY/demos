@@ -43,7 +43,7 @@ contract("Voting", accounts => {
             // Ensure that you have migrations/1_deploy_contract.js
             v = await Voting.deployed();
         });
-        
+
         it("should be able to vote for spaces", async () => {
             await v.vote("spaces");
             const votes = await v.getTotalVotesCandidate("spaces");
