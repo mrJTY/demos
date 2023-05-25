@@ -12,7 +12,7 @@
         "test": "bazel test //..."
     },
     "dependencies": {
-        "@openzeppelin/contracts": "^4.0.0",
+        "@openzeppelin/contracts": "^4.8.3",
         "markdown-pdf": "^10.0.0",
         "truffle": "^5.9.1"
     }
