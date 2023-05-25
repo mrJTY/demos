@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   Future<DeployedContract> getContract() async {
     // Assumes you have done a truffle compile
     String abiFile = await rootBundle.loadString("build/contracts/Voting.json");
-    
+
 
     // TODO: Parse out only the 'abi' section
     // ContractAbi.fromJson expects only an iterable list

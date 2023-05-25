@@ -24,10 +24,10 @@ Alternatively without Bazel, manage these packages manually:
 If you have Bazel installed, then this shell script will install the dependencies and run the test:
 
 ```sh
-$ ./bin/test.sh 
+$ ./bin/test.sh
 Starting local Bazel server and connecting to it...
 Loading: 0 packages loaded
-    currently loading: 
+    currently loading:
     Fetching @npm; Running npm install on //:package.json 10s
 ```
 
@@ -151,7 +151,7 @@ mapping(address => Student) public students;
 
 ### Course
 
-The `courses` mapping contains the available courses. 
+The `courses` mapping contains the available courses.
 ```c
 struct Course {
   string courseCode;
@@ -172,7 +172,7 @@ mapping(string => Course) public courses;
     string courseCode;
     uint256 bidAmount;
     uint256 bidTime;
-  } 
+  }
   mapping(string => Bid[]) bids;
 ```
 
@@ -183,14 +183,14 @@ The enrollment would prefer:
 * highest bidder
 * if there are equal amount of bids, then take the earliest. It assumes that ordering in the list as a proxy for time.
 
-Repeat this step until quota has been filled or the bids 
+Repeat this step until quota has been filled or the bids
 
 ```js
 uint numStudentsEnrolled = 0;
 uint bidsCovered = 0;
 while(numStudentsEnrolled < quota && bidsCovered < bids[courseCode].length) {
   topBidder = findMaxBidder(bids);
-  // Enroll student to the course 
+  // Enroll student to the course
   courses[courseCode].studentsEnrolled.push(topBidder);
   // Remove the bid
   delete bids[courseCode][topBidderIndex];
@@ -316,7 +316,7 @@ This assignment was done as a single contract for simplicity. The `AccessControl
 
 My survey paper for assignment 3 will cover Hedera Hashgraph and it may provide a suitable alternative for a distributed application. A key differentiator is that they offer managed services which solves commonly encountered problems when developing a distributed application.
 
-The [Hedera Consensus Service](https://hedera.com/consensus-service) (HCS) provides fair ordering which is a good use case for a bidding system. Getting consensus on the ordering is important for students to get their class enrollments fairly. 
+The [Hedera Consensus Service](https://hedera.com/consensus-service) (HCS) provides fair ordering which is a good use case for a bidding system. Getting consensus on the ordering is important for students to get their class enrollments fairly.
 
 Contracts written in Solidity can be deployed to their [Smart Contract Service](https://docs.hedera.com/guides/docs/sdks/smart-contracts). Contracts are still limited with the same TPS as the Ethereum network.
 
@@ -325,7 +325,7 @@ that can go up to 100,000 TPS. Using a managed service for tokens may also help 
 
 Finally, Hedera offers very low transaction costs because of its technical innovation. It's technical innovation claims to support upt o 100,000 TPS and that [transaction fees are to a fiat currency](https://hedera.com/fees) which will make fees more predictable. This can reduce a developer's risk exposure to a coin's price volatility.
 
-It is not in scope for this assignment, but it may be worth doing some more exploration for my own curiosity. 
+It is not in scope for this assignment, but it may be worth doing some more exploration for my own curiosity.
 
 # Resources
 * https://docs.soliditylang.org/en/develop/solidity-by-example.html

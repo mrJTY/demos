@@ -82,7 +82,7 @@ contract("UniAdmissionToken", accounts => {
       }
     })
   });
-  
+
   describe("A Student transfering tokens", () =>{
     let uat = null;
     before(async() => {
@@ -127,13 +127,13 @@ contract("UniAdmissionToken", accounts => {
         assert.equal(
             Number(student01BalanceAfter),
             Number(student01BalanceBefore) - transferTokens - cut,
-            "Student01's tokens should have been reduced" 
+            "Student01's tokens should have been reduced"
         );
-        
+
         assert.equal(
             Number(student02BalanceAfter),
             Number(student02BalanceBefore) + transferTokens,
-            "Student02's tokens should have been increased with a 10% cut" 
+            "Student02's tokens should have been increased with a 10% cut"
         );
 
     });

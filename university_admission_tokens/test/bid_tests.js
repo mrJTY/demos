@@ -21,7 +21,7 @@ contract("UniAdmissionToken", accounts => {
   const eventBidCreated = "BidCreated";
   const eventBidModified = "BidModified";
   const feesPerUoc = 10**3;
- 
+
   describe("One bidding student", () =>{
     let uat = null;
     const initialTokens = 300;
@@ -66,7 +66,7 @@ contract("UniAdmissionToken", accounts => {
         tx.logs[0].event,
         eventBidCreated,
       );
-     
+
       const studentAfterBid = await uat.getStudent(student01);
       const tokensAfterBid = studentAfterBid[1];
       const expectedTokensAfterBid = expectedTokensBeforeBid - tokensToBid;
@@ -88,7 +88,7 @@ contract("UniAdmissionToken", accounts => {
         assert(e.message.includes("Bid is the same, not modified"));
       }
     });
-    
+
     it("should be able to modify a bid with a higher value", async() => {
       const newBid = 200;
       const tx = await uat.modifyBid("COMP01", newBid, {from: student01});
@@ -122,7 +122,7 @@ contract("UniAdmissionToken", accounts => {
         "Student should have only 50 tokens left"
       );
     });
-    
+
     it("should not be able to modify a non-existent bid", async() => {
       try {
         const newBid = 50;

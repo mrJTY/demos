@@ -21,7 +21,7 @@ contract("UniAdmissionToken", accounts => {
   const eventBidCreated = "BidCreated";
   const eventBidModified = "BidModified";
   const feesPerUoc = (10**3);
- 
+
   describe("Cost analysis", () =>{
     it("should log transaction costs", async() => {
       const initialTokens = 300;
@@ -43,32 +43,32 @@ contract("UniAdmissionToken", accounts => {
       // Student bids
       const txBid = await uat.bidAdmissionTokens("COMP01", {from: student01, value: 100});
 
-      // Admin closes course 
+      // Admin closes course
       const txCloseEnrollment = await uat.closeEnrollment("COMP01", {from: uniAdmin01});
 
       // Log and calculate the total gas used
       let totalGasUsed = 0;
-      
+
       console.log("Cost of granting uni admin role:");
       console.log(txGrantUniAdminRole['receipt']['gasUsed']);
       totalGasUsed+=txGrantUniAdminRole['receipt']['gasUsed'];
-      
+
       console.log("Cost of admitting a student to uni:");
       console.log(txAdminStudentToUni['receipt']['gasUsed']);
       totalGasUsed+=txAdminStudentToUni['receipt']['gasUsed'];
-      
+
       console.log("Cost of creating a course:");
       console.log(txCreateCourse['receipt']['gasUsed']);
       totalGasUsed+=txCreateCourse['receipt']['gasUsed'];
-      
+
       console.log("Cost of paying fees:");
       console.log(txPayFees['receipt']['gasUsed']);
       totalGasUsed+=txPayFees['receipt']['gasUsed'];
-      
+
       console.log("Cost of bidding:");
       console.log(txBid['receipt']['gasUsed']);
       totalGasUsed+=txBid['receipt']['gasUsed'];
-      
+
       console.log("Cost of enrollment:");
       console.log(txCloseEnrollment['receipt']['gasUsed']);
       totalGasUsed+=txCloseEnrollment['receipt']['gasUsed'];
