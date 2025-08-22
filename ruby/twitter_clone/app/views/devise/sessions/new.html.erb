@@ -1,0 +1,98 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="flex justify-center">
+        <svg class="h-12 w-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+        </svg>
+      </div>
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+        Welcome back
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Sign in to your TwitterClone account
+      </p>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="bg-white py-8 px-6 shadow-xl rounded-xl border border-gray-200">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+        <!-- Email Field -->
+        <div>
+          <label for="user_email" class="block text-sm font-medium text-gray-700">
+            Email address
+          </label>
+          <div class="mt-1">
+            <%= f.email_field :email,
+                autofocus: true,
+                autocomplete: "email",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm",
+                placeholder: "Enter your email" %>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <label for="user_password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <%= f.password_field :password,
+                autocomplete: "current-password",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm",
+                placeholder: "Enter your password" %>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <%= f.check_box :remember_me,
+                class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" %>
+            <label for="user_remember_me" class="ml-2 block text-sm text-gray-900">
+              Remember me
+            </label>
+          </div>
+
+          <div class="text-sm">
+            <%= link_to "Forgot your password?", new_password_path(resource_name),
+                class: "text-blue-600 hover:text-blue-500 transition-colors" %>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <%= f.submit "Sign in",
+              class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200" %>
+        </div>
+      <% end %>
+
+      <!-- Divider -->
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">New to TwitterClone?</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sign Up Link -->
+      <div class="mt-6 text-center">
+        <%= link_to "Create a new account", new_registration_path(resource_name),
+            class: "text-blue-600 hover:text-blue-500 font-medium text-sm transition-colors" %>
+      </div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="text-center">
+      <%= link_to root_path,
+          class: "text-gray-600 hover:text-gray-500 text-sm transition-colors" do %>
+        ← Back to home
+      <% end %>
+    </div>
+  </div>
+</div>

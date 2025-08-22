@@ -1,0 +1,4 @@
+{
+  "sorbet-lsp.enabled": true,
+  "sorbet-lsp.useBundler": true
+}

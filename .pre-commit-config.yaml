@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
@@ -9,12 +9,36 @@ repos:
         args: [ --allow-missing-credentials ]
       - id: detect-private-key
       - id: check-added-large-files
+        args: [ --maxkb=1024 ]
   - repo: https://github.com/psf/black
-    rev: 22.10.0
+    rev: 25.1.0
     hooks:
       - id: black
   - repo: https://github.com/pocc/pre-commit-hooks
-    rev: master
+    rev: v1.3.5
     hooks:
       - id: clang-format
         args: [ --style=Google ]
+  - repo: local
+    hooks:
+      - id: rubocop
+        name: RuboCop
+        entry: bash -c 'if [ -f "Gemfile" ] && bundle show rubocop >/dev/null 2>&1; then bundle exec rubocop --auto-correct; else echo "RuboCop not available, skipping"; fi'
+        language: system
+        types: [ruby]
+        pass_filenames: false
+        always_run: true
+      - id: brakeman
+        name: Brakeman
+        entry: bash -c 'if [ -f "Gemfile" ] && bundle show brakeman >/dev/null 2>&1; then bundle exec brakeman --no-progress --quiet; else echo "Brakeman not available, skipping"; fi'
+        language: system
+        types: [ruby]
+        pass_filenames: false
+        always_run: true
+      - id: bundler-audit
+        name: Bundler Audit
+        entry: bash -c 'if [ -f "Gemfile" ] && bundle show bundle-audit >/dev/null 2>&1; then bundle exec bundle-audit check --update; else echo "Bundle Audit not available, skipping"; fi'
+        language: system
+        types: [ruby]
+        pass_filenames: false
+        always_run: true
