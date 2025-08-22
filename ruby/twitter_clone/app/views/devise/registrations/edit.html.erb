@@ -1,0 +1,113 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <svg class="h-8 w-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+          <h1 class="ml-3 text-xl font-bold text-gray-900">TwitterClone</h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <%= link_to "Home", tweets_path, class: "text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Profile", profile_path, class: "text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete,
+              class: "bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Account Settings Form -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">Account Settings</h1>
+        <p class="text-gray-600 mt-2">Manage your account and security settings</p>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, local: true, class: "space-y-6") do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!-- Current Password Field -->
+        <div>
+          <label for="user_current_password" class="block text-sm font-medium text-gray-700">
+            Current Password
+          </label>
+          <div class="mt-1">
+            <%= f.password_field :current_password,
+                autocomplete: "current-password",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm",
+                placeholder: "Enter your current password" %>
+          </div>
+          <p class="mt-1 text-xs text-gray-500">Required to confirm your changes</p>
+        </div>
+
+        <!-- New Password Field -->
+        <div>
+          <label for="user_password" class="block text-sm font-medium text-gray-700">
+            New Password
+          </label>
+          <div class="mt-1">
+            <%= f.password_field :password,
+                autocomplete: "new-password",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm",
+                placeholder: "Leave blank if you don't want to change it" %>
+          </div>
+          <% if @minimum_password_length %>
+            <p class="mt-1 text-xs text-gray-500">Minimum <%= @minimum_password_length %> characters</p>
+          <% end %>
+        </div>
+
+        <!-- Password Confirmation Field -->
+        <div>
+          <label for="user_password_confirmation" class="block text-sm font-medium text-gray-700">
+            Confirm New Password
+          </label>
+          <div class="mt-1">
+            <%= f.password_field :password_confirmation,
+                autocomplete: "new-password",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm",
+                placeholder: "Confirm your new password" %>
+          </div>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="flex items-center justify-between pt-6">
+          <div class="flex space-x-3">
+            <%= f.submit "Update Password",
+                class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors" %>
+            <%= link_to "Cancel", profile_path,
+                class: "bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium transition-colors" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <h2 class="text-lg font-medium text-red-900 mb-4">Danger Zone</h2>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-200">
+          <div>
+            <h3 class="text-sm font-medium text-red-900">Delete Account</h3>
+            <p class="text-sm text-red-700">Permanently delete your account and all associated data</p>
+          </div>
+          <%= button_to "Delete Account", registration_path(resource_name),
+              method: :delete,
+              class: "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+              data: { confirm: "Are you sure? This action cannot be undone." } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Profile -->
+    <div class="mt-6 text-center">
+      <%= link_to "← Back to Profile", profile_path,
+          class: "text-gray-600 hover:text-gray-500 text-sm transition-colors" %>
+    </div>
+  </main>
+</div>

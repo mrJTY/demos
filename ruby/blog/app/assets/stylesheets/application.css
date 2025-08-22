@@ -1,0 +1,169 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* Light theme overrides */
+:root {
+  --bg: #ffffff;
+  --accent-bg: #f5f7ff;
+  --text: #2c3e50;
+  --text-light: #6c757d;
+  --border: #dee2e6;
+  --accent: #007bff;
+  --code: #e9ecef;
+  --preformatted: #f8f9fa;
+  --marked: #fff3cd;
+  --disabled: #6c757d;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Override SimpleCSS dark theme */
+body {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+}
+
+/* Form styling */
+form {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Button styling */
+button,
+input[type="submit"],
+.btn {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+  background: #0056b3 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Table styling */
+table {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid var(--border) !important;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: var(--accent-bg) !important;
+  color: #2c3e50 !important;
+  font-weight: 600;
+}
+
+/* Navigation and links */
+nav {
+  background: var(--accent-bg) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--accent) !important;
+}
+
+nav a:hover {
+  color: #0056b3 !important;
+}
+
+a {
+  color: var(--accent) !important;
+}
+
+a:hover {
+  color: #0056b3 !important;
+}
+
+/* Card styling */
+.card, .post {
+  background: #ffffff !important;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Action Text (Trix editor) light theme */
+trix-editor {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 1px solid var(--border) !important;
+}
+
+.trix-content {
+  background: #ffffff !important;
+  color: #2c3e50 !important;
+}
+
+/* Success/error messages */
+.notice, .alert {
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.notice {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
